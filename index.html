@@ -38,9 +38,27 @@
     document.getElementById('noBtn').addEventListener('click', trackNo);
   });
 </script>
+  <script>
+  function trackYes() {
+    gtag('event', 'click_yes_button', {
+      'event_category': 'engagement',
+      'event_label': 'Valentine Question'
+    });
+    console.log('Событие YES отправлено');
+  }
+
+  function trackNo() {
+    gtag('event', 'click_no_button', {
+      'event_category': 'engagement',
+      'event_label': 'Valentine Question'
+    });
+    console.log('Событие NO отправлено');
+  }
+</script>
 </body>
 
 </html>
+
 
 
 
