@@ -33,34 +33,15 @@
     
     <script type="module" src="script.js"></script>
   <script>
-  // Ждём, пока gtag станет функцией (обычно 100–500 мс)
-  function waitForGtag(callback) {
-    if (typeof gtag === 'function') {
-      callback();
-    } else {
-      setTimeout(() => waitForGtag(callback), 100); // проверяем каждые 100 мс
-    }
-  }
-
-  function trackYes() {
-    waitForGtag(() => {
-      gtag('event', 'valentine_response', {
-        'response': 'yes'
-      });
-    });
-  }
-
-  function trackNo() {
-    waitForGtag(() => {
-      gtag('event', 'valentine_response', {
-        'response': 'no'
-      });
-    });
-  }
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('yesBtn').addEventListener('click', trackYes);
+    document.getElementById('noBtn').addEventListener('click', trackNo);
+  });
 </script>
 </body>
 
 </html>
+
 
 
 
