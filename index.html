@@ -27,12 +27,32 @@
         </h2>
     </div>
     <div class="btns_container" id="btns_container">
-        <button id="yesBtn" class="btn yes">Yes</button>
-        <button id="noBtn" class="btn no">No</button>
+        <button id="yesBtn" onclick="trackYes()" class="btn yes">Yes</button>
+        <button id="noBtn" onclick="trackNo()" class="btn no">No</button>
     </div>
     
     <script type="module" src="script.js"></script>
+  <script>
+  // Функция для кнопки "ДА"
+  function trackYes() {
+    gtag('event', 'valentine_response', {
+      'response': 'yes',
+      'event_category': 'valentine',  // опционально, для группировки
+      'event_label': 'Yes button clicked'
+    });
+  }
+
+  // Функция для кнопки "НЕТ"
+  function trackNo() {
+    gtag('event', 'valentine_response', {
+      'response': 'no',
+      'event_category': 'valentine',
+      'event_label': 'No button clicked'
+    });
+  }
+</script>
 </body>
 
 </html>
+
 
