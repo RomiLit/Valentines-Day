@@ -33,26 +33,34 @@
     
     <script type="module" src="script.js"></script>
   <script>
-  // Функция для кнопки "ДА"
+  // Ждём, пока gtag станет функцией (обычно 100–500 мс)
+  function waitForGtag(callback) {
+    if (typeof gtag === 'function') {
+      callback();
+    } else {
+      setTimeout(() => waitForGtag(callback), 100); // проверяем каждые 100 мс
+    }
+  }
+
   function trackYes() {
-    gtag('event', 'valentine_response', {
-      'response': 'yes',
-      'event_category': 'valentine',  // опционально, для группировки
-      'event_label': 'Yes button clicked'
+    waitForGtag(() => {
+      gtag('event', 'valentine_response', {
+        'response': 'yes'
+      });
     });
   }
 
-  // Функция для кнопки "НЕТ"
   function trackNo() {
-    gtag('event', 'valentine_response', {
-      'response': 'no',
-      'event_category': 'valentine',
-      'event_label': 'No button clicked'
+    waitForGtag(() => {
+      gtag('event', 'valentine_response', {
+        'response': 'no'
+      });
     });
   }
 </script>
 </body>
 
 </html>
+
 
 
