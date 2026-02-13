@@ -39,25 +39,41 @@
   });
 </script>
   <script>
-  function trackYes() {
-    gtag('event', 'click_yes_button', {
-      'event_category': 'engagement',
-      'event_label': 'Valentine Question'
-    });
-    console.log('Событие YES отправлено');
-  }
+  // Принудительно делаем функции глобальными
+  window.trackYes = function() {
+    if (typeof gtag === 'function') {
+      gtag('event', 'click_yes_button', {
+        'event_category': 'engagement',
+        'event_label': 'Valentine Question'
+      });
+      console.log('✅ Событие YES отправлено в GA4');
+    } else {
+      console.error('❌ Ошибка: gtag не инициализирован');
+    }
+  };
 
-  function trackNo() {
-    gtag('event', 'click_no_button', {
-      'event_category': 'engagement',
-      'event_label': 'Valentine Question'
-    });
-    console.log('Событие NO отправлено');
-  }
+  window.trackNo = function() {
+    if (typeof gtag === 'function') {
+      gtag('event', 'click_no_button', {
+        'event_category': 'engagement',
+        'event_label': 'Valentine Question'
+      });
+      console.log('✅ Событие NO отправлено в GA4');
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+
+    if (yesBtn) yesBtn.addEventListener('click', window.trackYes);
+    if (noBtn) noBtn.addEventListener('click', window.trackNo);
+  });
 </script>
 </body>
 
 </html>
+
 
 
 
